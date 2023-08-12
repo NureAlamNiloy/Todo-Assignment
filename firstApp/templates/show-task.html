@@ -1,0 +1,45 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1> This is list show page</h1> 
+    <div class = "container m-5 text-center">
+        {% if  data%}
+          <table class="table table-striped border border-success">
+              <thead>
+                <tr>
+                  <th scope="col">Task NO</th>
+                  <th scope="col">Task Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for i in data  %}
+                     {% if not i.is_completed %}
+                     <tr>
+                        <td>{{i.taskNo}}</td>
+                        <td>{{i.taskTitle}}</td>
+                        <td>{{i.taskDescription}}</td>
+                        <td>
+                          {% if i.is_completed %}
+                              <p>Completed</p>
+                          {% else %}
+                              <p>Not Completed</p>
+                          {% endif %}
+                        </td>
+                        <td>
+                          <a href = "{% url 'EditTask' id=i.taskNo  %}" class = "btn btn-warning btn-sm" type="button">Edit</a>
+                          <a href = "{% url 'DeleteTask' id=i.taskNo  %}" class = "btn btn-danger btn-sm" type="button">Delete</a>
+                          <a href = "{% url 'completeTask' id=i.taskNo  %}" class = "btn btn-success btn-sm" type="button">Completed</a>
+                        </td>
+                    </tr>
+                     {% endif %}
+                  {% endfor %} 
+              </tbody>
+            </table>
+            {% else %}
+            <h1>No data for show</h1>
+            {% endif %}
+      </div>
+{% endblock  %}

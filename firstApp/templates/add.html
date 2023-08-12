@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1> This is list show page</h1>
+   <div class="container w-50">
+        <form method="post">
+            {% csrf_token %}
+            {{form | crispy}}
+            <button type="submit" class = "btn btn-success py-3 px-5">Submit</button>
+        </form> 
+   </div>
+{% endblock  %}

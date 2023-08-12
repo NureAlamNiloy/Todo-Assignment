@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1> This is list show page</h1> 
+    <div class = "container m-5 text-center">
+        {% if  completed_tasks %}
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Task NO</th>
+                  <th scope="col">Task Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th> 
+                </tr>
+              </thead>
+              <tbody>
+                  {% for i in completed_tasks %}
+                     {% if i.is_completed %}
+                     <tr>
+                        <td>{{i.taskNo}}</td>
+                        <td>{{i.taskTitle}}</td>
+                        <td>{{i.taskDescription}}</td>
+                        <td>
+                          {% if i.is_completed %}
+                              <p>Completed</p>
+                          {% else %}
+                              <p>Not Completed</p>
+                          {% endif %}
+                        </td> 
+                    </tr>
+                     {% endif %}
+                  {% endfor %} 
+              </tbody>
+            </table>
+            {% else %}
+            <h1>No data for show</h1>
+            {% endif %}
+      </div>
+{% endblock  %}
