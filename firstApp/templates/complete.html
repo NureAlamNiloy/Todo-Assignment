@@ -11,6 +11,7 @@
                   <th scope="col">Task Title</th>
                   <th scope="col">Description</th>
                   <th scope="col">Status</th> 
+                  <th scope="col">Actions</th> 
                 </tr>
               </thead>
               <tbody>
@@ -27,6 +28,9 @@
                               <p>Not Completed</p>
                           {% endif %}
                         </td> 
+                        <td>
+                          <a href = "{% url 'DeleteTask' id=i.taskNo  %}" class = "btn btn-danger btn-sm" type="button">Delete</a>
+                        </td>
                     </tr>
                      {% endif %}
                   {% endfor %} 
